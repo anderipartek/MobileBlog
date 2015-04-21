@@ -1,34 +1,45 @@
 <?php
+	
+	require_once '../../core/Database.php';
 
-	//require_once '../../core/DataBase.php';
-	
-	
-    // error_reporting(E_ALL ^ E_DEPRECATED);
-    
-	//detalle:    SELECT id,fecha, titulo FROM articulo where id=1
+     error_reporting(E_ALL ^ E_DEPRECATED);
+
+	//detalle:    SELECT id, fecha, titulo FROM articulo where id=1
 	//eliminar:   DELETE FROM `articulo` WHERE `id`=1
 	//insertar:   INSERT INTO `articulo`( `titulo`) VALUES ("SSSSSSSS")
 	//modificar:  UPDATE `articulo` SET `titulo`=["el que quiera"] WHERE id=1
 
-	function insertarArticulo($titulo, $id_usuario=1){
+	function insertarCategoria($titulo){
+		$cn = mysql_connect('localhost', 'root', '');
+		mysql_select_db('mb15', $cn);
 		
-		$db = new Database();
-		$db->connect();
-		$db->insert('articulo', array('titulo'=>$titulo , 'id_usuario'=>$id_usuario));		
-		$db->disconnect();
+		$sql = 'INSERT INTO `categoria`(`titulo`) VALUES ("'.$titulo.'")';
+		//echo ("sql " . $sql);
+		if ( !mysql_query( $sql, $cn) )
+		{
+			echo ("fallo insert " . $sql);
+		}
 		
+		mysql_close();
 	}
 
+	
 	/**
 	 * Eliminar un articulo por su identificador
 	 * @param $id identifacor del articulo
 	 * @return boolean si elimina true, en caso contrario false
 	 */
-	function eliminarArticulo( $id ){
-		$db = new Database();
-		$db->connect();
-		$db->delete('articulo', 'id='.$id );
-		$db->disconnect();
+	function eliminarCategoria( $id ){
+		$resul = false;
+		
+		$cn = mysql_connect('localhost', 'root', '');
+		mysql_select_db('mb15', $cn);
+		
+		$resul = mysql_query('DELETE FROM categoria WHERE id='.$id , $cn);
+		
+		mysql_close();
+		
+		return $resul;		
 	}
 
 
@@ -37,57 +48,65 @@
 	 * @param $id identificador del articulo
 	 * @return articulo si existe, en caso contraio null
 	 */
-	function detalleArticulo( $id )
+	function detalleCategoria( $id )
 	{
-		$db = new Database();
-		$db->connect();
-		$db->select( 'articulo','*','', 'id='.$id);
-		$res = $db->getResult();
-		$db->disconnect();		
+		$cn = mysql_connect('localhost', 'root', '');
+		mysql_select_db('mb15', $cn);
+	
+		$resultado = mysql_query('SELECT id ,fecha, titulo FROM categoria where id='.$id , $cn);
+		
+		$categorias = array();
+	
+		while($categoria = mysql_fetch_assoc($resultado))
+		{
+			$categorias[] = $categoria;
+		}
+	
+		mysql_close();
 	
 		//comrpobar longitud antes de retornar
-		if ( sizeof($res) > 0 ){
-			return $res[0];
+		if ( sizeof($categorias) > 0 ){
+			return $categorias[0];
 		}else {
 			return null;	
 		}	
 	}
 	
-	function getArticulos( $limit=10 , $id_usuario=null)
+	
+	function getCategorias()
 	{
+		$cn = mysql_connect('localhost', 'root', '');
+		mysql_select_db('mb15', $cn);
+	
+		$resultado = mysql_query('SELECT id, fecha, titulo FROM categoria', $cn);
+		$articulos = array();
+		 
+		while($categoria = mysql_fetch_assoc($resultado))
+		{
+			$categorias[] = $categoria;
+		}
+		 
+		mysql_close();
+	
+		return $categorias;
+	}
 
+	
+	function modificarCategoria( $id, $tit ){
+		$cn = mysql_connect('localhost', 'root', '');
+		mysql_select_db('mb15', $cn);
 		
+		       
+		$sql = 'UPDATE `categoria` SET `titulo`="'.$tit.'" WHERE `id`='.$id;
 		
-		$sql = "SELECT a.id , titulo, id_usuario, nombre , fecha, nombre FROM `articulo` as a , `usuario` as u WHERE a.id_usuario = u.id";
-		
-		$db = new Database();
-		$db->connect();
-		
-		$where = '';
-		if ( isset($id_usuario) ){
-			$where =' and id_usuario='.$id_usuario;
+		if ( !mysql_query( $sql, $cn) )
+		{
+			echo ("fallo update " . $sql);
 		}
 		
-		//$db->select( 'articulo','*','', $where ,'', '');
-		$db->sql( $sql.$where );
-		
-		
-		$res = $db->getResult();
-		$db->disconnect();
-		return $res;
-		
+		mysql_close();
 		
 	}
 
 	
-	
-	function modificarArticulo( $id, $tit , $id_usuario=1)
-	{
-		$db = new Database();
-		$db->connect();
-		$db->update('articulo', array('titulo'=>$tit, 'id_usuario'=>$id_usuario), 'id='.$id);		
-		$db->disconnect();		
-		
-	}
-
 ?>

@@ -5,55 +5,59 @@
 <div id="page-wrapper">
     <div class="row">
         <div class="col-lg-12">
-          
-         </div>
+           
+        </div>
         <!-- /.col-lg-12 -->
-     </div>
-     <!-- /.row -->
-     <div class="row">
+    </div>
+    <!-- /.row -->
+    <div class="row">
 
+            
             <br>
-           <!--  CONTENIDO PROPIO  --> 
-           <div class="panel panel-default">
+            <!-- CONTENIDO PROPIO -->
+             <div class="panel panel-default">
                 <div class="panel-heading">
-                     <h3 class="text-primary">Listado Categorias</h3>
+                	 <h3 class="text-primary">Listado categorias</h3>
                 </div>
-                <div class="panel-body">
+             	<div class="panel-body">
                 
                   <table id="tabla">					
 					<thead>
-						<tr>						
-							<th>ID</th>					
-							<th>Nombre</th>
-							
+						<tr>
+							<th>Id</th>
+							<th>Fecha</th>
+							<th>Titulo</th>
+							<th>Operacion</th>
 						</tr>
 					</thead>
 					
 					<tbody>
-					    <?php foreach($categorias as $cat): ?>
-					    <tr>					    	
-					        <td>1</td>
-					        <td>nombre</td>					        
+					    <?php foreach($categorias as $categoria): ?>
+					    <tr>
+					    	<td><?php echo $categoria['id']?></td>
+					        <td><?php echo $categoria['fecha']?></td>
+					        <td>
+					        	<a href="<?php echo(CONTROLLER_CATEGORIA);?>?op=2&id=<?php echo $categoria['id']?>" >
+					        		<?php echo $categoria['titulo']?>
+					        	</a>
+					        </td>
+					        <td>
+					        	<a href="<?php echo(CONTROLLER_CATEGORIA);?>?id=<?php echo $categoria['id']?>&op=3" 
+					        	   title="Eliminar categoria"><i class="fa fa-trash fa-fw"></i></a> 
+					        </td>
 					    </tr>
-						<?php endforeach;?>
+					<?php endforeach;?>
 					</tbody>
 					</table>
 				
-                </div>
+				</div>
                 <div class="panel-footer">
-                    <a href="<?php echo(CONTROLLER_USER);?>?op=<?php echo(OP_DETALLE);?>"><i class="fa fa-plus-circle fa-fw"></i>Nuevo Usuario</a>
-                 </div>
-            </div>
-           
+					<a href="<?php echo(CONTROLLER_CATEGORIA);?>?op=2">Crea tu categoria</a>
+				</div>
+			</div>
+			<!-- END CONTENIDO PROPIO -->
 					
 					
-					
-					
-					
-					
-			<!--  End:CONTENIDO PROPIO  -->		
-					
-
 		</div><!-- /.row -->
 </div><!-- <div id="page-wrapper"> -->
 
