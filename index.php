@@ -4,7 +4,7 @@
  * Controlador Pagina Principal, donde se muestran las ultimas 10 noticias
  * 
  * TODO cuando se haga scroll hacia abajo que cargue otras 10 noticias con AJAX
- * cambio tonto
+ * cambio oli
  */
 
 require_once 'core/config.php';
