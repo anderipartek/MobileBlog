@@ -16,8 +16,8 @@ class Database{
 	 */
 	private $db_host = "localhost"; // servidor
 	private $db_user = "root";      // usuario
-	private $db_pass = "";          // password
-	private $db_name = "mb15";	// nombre bbdd
+	private $db_pass = "root";          // password
+	private $db_name = "tienda";	// nombre bbdd
 	
 	/*
 	 * Extra variables that are required by other function such as boolean con variable
