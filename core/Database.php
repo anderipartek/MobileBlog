@@ -197,7 +197,7 @@ class Database{
             return false; // Table does not exist
         }
     }
-	
+    
     //Function to delete table or row(s) from database
     public function delete($table,$where = null){
     	// Check to see if table exists
