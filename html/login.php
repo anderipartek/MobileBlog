@@ -3,8 +3,8 @@
  * 	file:html/login.php 
  *  author: Ander Uraga
  *  email: amnsdnd
- *  version:dff
- *  date:  
+ *  version:v1.0
+ *  date:  today
  * 
  */ 
 require_once '../core/config.php';
