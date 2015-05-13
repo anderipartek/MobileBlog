@@ -360,3 +360,29 @@ table.dataTable thead .sorting:after {
 .panel-yellow a:hover {
     color: #df8a13;
 }
+
+/* Estilos de userprofile.php */
+#nombre, #email, #password, #rol {
+    font-weight: bold;
+    padding-right: 10px;
+}
+    
+table.row {
+    table-layout: fixed;
+    margin-left: 15px;
+}
+
+table.row td {
+    font-size: 16px;
+    padding: 2px 0 2px 0;
+}
+
+table.row td.thumb {
+    text-align: left;
+    width: 120px;
+    height: 120px;
+}
+
+table.row td.thumb img {
+    border: 2px #666666 solid;
+}
