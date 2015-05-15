@@ -30,6 +30,7 @@
 													<td style="padding-top:0;padding-bottom:0;padding-right:0;padding-left:0;vertical-align:top;text-align:left">
 														<h1 style="font-family:sans-serif;font-weight:bold;Margin-top:0;text-align:left;font-size:22px;line-height:26px;Margin-bottom:20px;color:#445359">Saludos Blogeros !!</h1>
 														<p style="Margin-top:0;font-weight:normal;color:#677483;font-family:sans-serif;font-size:14px;line-height:25px;Margin-bottom:15px">Ha sido añadido a MobileBlog un nuevo artículo! Si desea visualizarlo clica el enlace de abajo!</p>
+														<h2>{titulo}</h2>														
 													</td>
 												</tr>
 											</tbody></table>

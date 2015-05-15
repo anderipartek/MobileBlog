@@ -68,7 +68,7 @@ class CorreoElectronico {
 			echo "Mensaje enviado!";
 		}
 	}
-	function notificarArticulo($subject = "MobileBlog") {
+	function notificarArticulo($subject = "MobileBlog", $titulo) {
 		// Asunto
 		$this->phpMailer->Subject = $subject;
 		
@@ -76,6 +76,7 @@ class CorreoElectronico {
 		$plantilla = file_get_contents ( PLANTILLA_ARTICULO );
 		$url = WEBROOT;
 		$contenido = str_replace ( "{url}", $url, $plantilla );
+		$contenido = str_replace ( "{titulo}", $titulo, $plantilla );		
 		$this->phpMailer->MsgHTML ( $contenido );
 		$destinatarios = getUsuariosMail ();
 		

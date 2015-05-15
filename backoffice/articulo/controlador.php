@@ -68,7 +68,7 @@ function op_insert($perfil){
 	if (isset($_POST["titulo"])) {
 		insertarArticulo(  $_POST["titulo"] ,$perfil['id'] , $_POST['id_categoria'], $_POST['contenido'], Utilidades::uploadFoto() );
 		$email=new CorreoElectronico();
-		$email->notificarArticulo();
+		$email->notificarArticulo("Nueva noticia", $_POST["titulo"] );
 		//listar de nuevo todos
 		op_listar($perfil);
 	}else{
